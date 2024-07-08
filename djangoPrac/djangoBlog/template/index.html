@@ -22,9 +22,9 @@
     <ul>
         {%for article in articleList%}
             {%if article.author == 'Oscar'%}
-                <li>{{ article.title }} author: {{ article.author }} time: {{ article.time }}</li>
+                <li>{{ article.title|upper }} author: {{ article.author }} time: {{ article.time }}</li>
             {%else%}
-                <li style="color:red">{{ article.title }} author: {{ article.author }}  time: {{ article.time }}</li>
+                <li style="color:red">{{ article.title|lower }} author: {{ article.author }}  time: {{ article.time }}</li>
             {%endif%}
         {%empty%}
             <li>There is no article!</li>
