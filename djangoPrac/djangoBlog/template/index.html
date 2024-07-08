@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog homepage - {{ blog_name }} </title>
+</head>
+<body>
+    <!-- Wayne is handsome.
+    <ul>
+        <li>123</li>
+        <li>456</li>
+        <li>789</li>
+    </ul> -->
+
+    Receive the data from backend...
+    <br />
+    <!-- 以下為 django template default filter，規則是中間不能有任何 space -->
+    {{ blog_name|default:"Not yet" }}
+
+    <!-- 以下為 for-loop 在 tamplate 中的用法，若無資料，可以使用 empty -->
+    <ul>
+        {%for article in articleList%}
+            {%if article.author == 'Oscar'%}
+                <li>{{ article.title }} author: {{ article.author }} time: {{ article.time }}</li>
+            {%else%}
+                <li style="color:red">{{ article.title }} author: {{ article.author }}  time: {{ article.time }}</li>
+            {%endif%}
+        {%empty%}
+            <li>There is no article!</li>
+        {%endfor%}
+    </ul>
+</body>
+</html>
