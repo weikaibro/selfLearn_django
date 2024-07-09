@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 import djangoBlog.views
 
 urlpatterns = [
@@ -25,4 +28,7 @@ urlpatterns = [
     # path('', djangoBlog.views.index),
     path('newslist/', djangoBlog.views.getNews),
     path('', djangoBlog.views.homepage),
-]
+] 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
