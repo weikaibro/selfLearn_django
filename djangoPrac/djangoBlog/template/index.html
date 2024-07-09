@@ -1,3 +1,4 @@
+<!-- extends the parent template -->
 {% extends 'base.html' %}
 {% load static %}
 
@@ -30,4 +31,6 @@
     </ul>
 
     <img src="{% static '/img/img1.jpg' %}" alt="">
+    <hr>
+    {%include 'comment.html'%}
 {%endblock%}

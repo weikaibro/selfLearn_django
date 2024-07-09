@@ -28,6 +28,7 @@ urlpatterns = [
     # path('', djangoBlog.views.index),
     path('newslist/', djangoBlog.views.getNews),
     path('', djangoBlog.views.homepage),
+    path('about/', djangoBlog.views.about),
 ] 
 
 if settings.DEBUG:

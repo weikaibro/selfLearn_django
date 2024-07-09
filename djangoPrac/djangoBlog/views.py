@@ -47,8 +47,8 @@ def homepage(request):
     # 可以針對 render 點擊 f12，即可發現其本質還是在【調用 HttpResponse】
     # 第 3 個參數為【將數據傳遞給 template】，是以【字典】的形式來傳遞的。若沒有值，則會在 template 中採用 filter default 技術
     context = {
-        # "blog_name": "Wayne's Blog"
-        "blog_name": "",
+        "blog_name": "Wayne's Blog",
+        # "blog_name": "",
         "articleList": [
             {
                 'title': 'Today news',
@@ -63,3 +63,9 @@ def homepage(request):
         ]
     }
     return render(request, "index.html", context)
+
+def about(request):
+    context = {
+        "blog_name": "About me",
+    }
+    return render(request, "about.html", context)
