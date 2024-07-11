@@ -69,3 +69,16 @@ def about(request):
         "blog_name": "About me",
     }
     return render(request, "about.html", context)
+
+def register(request):
+    return render(request, "register.html")
+
+def addReg(request):
+    userid = request.POST['userID']
+    username = request.POST['username']
+    password = request.POST['password']
+    truename = request.POST['truename']
+    sex = request.POST['sex']
+    age = request.POST['age']
+    print(userid, username, password, truename, sex, age)
+    return HttpResponse("Success!")

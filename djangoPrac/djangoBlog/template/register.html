@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{%block baseTitle%}
+Registration
+{%endblock%}
+
+{%block baseContent%}
+<br>
+<!-- action 內會填入資料送出當下的路由 -->
+<form action="add/" method="post">
+    <!-- middleware 內有配置防止 CSRF 攻擊的功能，因此需在 <form>...</form> 中寫入 {%csrf_token%} -->
+    {%csrf_token%}
+    userID: <input type="number" name="userID"><br>
+    username: <input type="text" name="username"><br>
+    password: <input type="password" name="password"><br>
+    truename: <input type="text" name="truename"><br>
+    sex: <input type="radio" name="sex" value="Man">Man <input type="radio" name="sex" value="Woman">Woman<br>
+    age: <input type="number" name="age"><br><br>
+    <input type="submit" value="sign up" />
+</form>
+{%endblock%}
