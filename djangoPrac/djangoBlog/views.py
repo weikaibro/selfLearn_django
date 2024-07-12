@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponse
-
 # import json
 from django.http import JsonResponse
+# input data from fe to db
+from django.db import connection
 
 # Create your views here.
 # 1. request: 前端傳資料給後端
@@ -74,11 +75,14 @@ def register(request):
     return render(request, "register.html")
 
 def addReg(request):
-    userid = request.POST['userID']
+    userID = request.POST['userID']
     username = request.POST['username']
     password = request.POST['password']
-    truename = request.POST['truename']
+    truename = request.POST['truename'] 
     sex = request.POST['sex']
     age = request.POST['age']
-    print(userid, username, password, truename, sex, age)
+    mycursor = connection.cursor()
+    # connect to db
+    mycursor.execute('insert into userinfo(userID, username, password, truename, sex, age) values(%s, %s, %s, %s, %s, %s)', (userID, username, password, truename, sex, age))
+    print(userID, username, password, truename, sex, age)
     return HttpResponse("Success!")
