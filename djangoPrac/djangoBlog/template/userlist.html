@@ -1,0 +1,18 @@
+<!-- extends the parent template -->
+{% extends 'base.html' %}
+
+{%block baseTitle%}
+    Blog homepage - userlist
+{%endblock%}
+
+{%block baseContent%}
+    <div>Tuple: </div>
+    {{ userdata }}
+    <br><br>
+    
+    <div>Dict: </div>
+    {%for user in userdata_dict%}
+        user id: {{ user.userID }} username: {{ user.username }} 
+        <br>
+    {%endfor%}
+{%endblock%}

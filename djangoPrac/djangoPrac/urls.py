@@ -31,6 +31,7 @@ urlpatterns = [
     path('about/', djangoBlog.views.about),
     path('register/', djangoBlog.views.register),
     path('register/add/', djangoBlog.views.addReg),
+    path('userlist/', djangoBlog.views.userlist),
 ] 
 
 if settings.DEBUG:

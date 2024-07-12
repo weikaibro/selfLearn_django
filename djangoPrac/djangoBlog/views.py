@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 # input data from fe to db
 from django.db import connection
+mycursor = connection.cursor()
 
 # Create your views here.
 # 1. request: 前端傳資料給後端
@@ -74,6 +75,7 @@ def about(request):
 def register(request):
     return render(request, "register.html")
 
+# input from fe to db
 def addReg(request):
     userID = request.POST['userID']
     username = request.POST['username']
@@ -81,8 +83,28 @@ def addReg(request):
     truename = request.POST['truename'] 
     sex = request.POST['sex']
     age = request.POST['age']
-    mycursor = connection.cursor()
-    # connect to db
     mycursor.execute('insert into userinfo(userID, username, password, truename, sex, age) values(%s, %s, %s, %s, %s, %s)', (userID, username, password, truename, sex, age))
     print(userID, username, password, truename, sex, age)
     return HttpResponse("Success!")
+
+# fetch from db to fe
+def userlist(request):
+    # tuple
+    mycursor.execute('select * from userinfo')
+    userdata = mycursor.fetchall()
+    print(userdata)
+
+    # dict
+    heads = [head[0] for head in mycursor.description]
+    userdata_dict = []
+    for user in userdata:
+        user_dict = zip(heads, user)
+        userdata_dict.append(dict(user_dict))
+
+    context = {
+        'userdata': userdata,
+        'userdata_dict': userdata_dict,
+    }
+
+    # context: from be to fe
+    return render(request, "userlist.html", context)
